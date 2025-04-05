@@ -1,5 +1,11 @@
+import 'package:base_project/common/app_styles.dart';
 import 'package:base_project/features/map_screen/map_screen.dart';
+import 'package:base_project/features/map_screen/view_model.dart/map_view_model.dart';
+import 'package:base_project/helpers/location_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:location/location.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splashscreen';
@@ -13,13 +19,124 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, MapScreen.routeName);
+    LocationHelper().getCurrentLocation(context: context);
+    Future.delayed(const Duration(seconds: 1), () {
+      LocationHelper().getCurrentLocation(context: context);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Center(
+            child: Text(
+              'Welcome to Location Share',
+              style: tsS20W600.copyWith(
+                color: Colors.black,
+              ),
+            ),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () async {
+              Navigator.of(context).pushReplacementNamed(MapScreen.routeName);
+            },
+            // onPressed: () => _onClick(),
+            child: const Text('Go to Map'),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              requestLocationPermission().then((v) {
+                if (v == true) {
+                  Navigator.of(context)
+                      .pushReplacementNamed(MapScreen.routeName);
+                }
+              }); // requestLocationPermission();
+              // LocationHelper().getCurrentLocation(context: context);
+            },
+            // onPressed: () => _onClick(),
+            child: const Text('Get Location'),
+          ),
+        ],
+      ),
+    );
   }
+
+  void _onClick() {
+    LocationHelper().checkPermissionAndNavigate(
+      context,
+      onPermission: () {
+        LocationHelper().getCurrentLocation(context: context);
+        Navigator.of(context).pushReplacementNamed(MapScreen.routeName);
+      },
+    );
+  }
+
+  Future<void> checkLocation() async {
+    await LocationHelper().checkPermissionAndNavigate(
+      context,
+      onPermission: () {
+        LocationHelper().getCurrentLocation(context: context);
+      },
+    );
+  }
+
+  Future<void> _onPermission() async {
+    var permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+  }
+
+  Future<bool?> requestLocationPermission() async {
+    Location location = Location();
+
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+    LocationData _locationData;
+
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return false;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return true;
+      }
+    }
+
+    _locationData = await location.getLocation();
+    print('Location: ${_locationData.latitude}, ${_locationData.longitude}');
+    final provider = context.read<MapViewModel>();
+    provider
+      ..latitude = _locationData.latitude ?? 0.0
+      ..longitude = _locationData.longitude ?? 0.0;
+
+    return true;
+  }
+
 }
