@@ -1,8 +1,10 @@
+import 'package:base_project/features/map_screen/map_screen.dart';
 import 'package:base_project/features/splash_screen/view/spalsh_screen.dart';
 import 'package:flutter/material.dart';
 
 Map<String, Widget Function(BuildContext context)> appRoutes() => {
    SplashScreen.routname: (context) => const SplashScreen(),
+      MapScreen.routname: (context) => const MapScreen(),
 };
 Widget? _getScreen(RouteSettings settings) {
   switch (settings.name) {
