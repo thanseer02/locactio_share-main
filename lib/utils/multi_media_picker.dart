@@ -2,7 +2,6 @@ import 'dart:io' as io;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hail_driver/common/app_colors.dart';
 
 Future<List<io.File>?> showMultiMediaPicker({
   required BuildContext context,
@@ -25,7 +24,6 @@ Future<List<io.File>?> showMultiMediaPicker({
             topLeft: Radius.circular(10),
             topRight: Radius.circular(10),
           ),
-          color: AppColors.colorWhite,
         ),
         child: Wrap(
           children: <Widget>[
@@ -37,21 +35,17 @@ Future<List<io.File>?> showMultiMediaPicker({
               child: const Text(
                 // 'Upload Image',
                 'Upload Image',
-                style: TextStyle(
-                  color: AppColors.primaryTextColor,
-                ),
+             
               ),
             ),
             ListTile(
               leading: const Icon(
                 Icons.photo_library,
-                color: AppColors.primaryTextColor,
               ),
               title: const Text(
                 //'Gallery',
                 'Gallery',
                 style: TextStyle(
-                  color: AppColors.primaryTextColor,
                 ),
               ),
               onTap: onTapGallery,
@@ -63,13 +57,11 @@ Future<List<io.File>?> showMultiMediaPicker({
             ListTile(
               leading: const Icon(
                 Icons.photo_camera,
-                color: AppColors.primaryTextColor,
               ),
               title: const Text(
                 //'Camera',
                 'Camera',
                 style: TextStyle(
-                  color: AppColors.primaryTextColor,
                 ),
               ),
               onTap: onTapCamera,

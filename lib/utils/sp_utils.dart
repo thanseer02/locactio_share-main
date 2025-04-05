@@ -1,7 +1,8 @@
+import 'package:base_project/utils/extensions.dart';
+import 'package:base_project/utils/sp_keys.dart';
+import 'package:base_project/utils/utils.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:hail_driver/utils/extensions.dart';
-import 'package:hail_driver/utils/sp_keys.dart';
-import 'package:hail_driver/utils/utils.dart';
+
 
 /// [SPUtils] - Secure Storage Utility class.
 class SPUtils {

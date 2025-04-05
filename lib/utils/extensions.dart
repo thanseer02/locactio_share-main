@@ -1,16 +1,14 @@
 import 'dart:math';
 
+import 'package:base_project/common/app_colors.dart';
+import 'package:base_project/common/app_styles.dart';
+import 'package:base_project/providers/mixin_progress_provider.dart';
+import 'package:base_project/widgets/custom_loader.dart';
+import 'package:base_project/widgets/list_scroll_more_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hail_driver/common/app_colors.dart';
-import 'package:hail_driver/common/app_styles.dart';
-import 'package:hail_driver/providers/dark_mode_provider.dart';
-import 'package:hail_driver/providers/mixin_progress_provider.dart';
-import 'package:hail_driver/utils/utils.dart';
-import 'package:hail_driver/widgets/custom_loader.dart';
-import 'package:hail_driver/widgets/list_scroll_more_widget.dart';
+import 'package:base_project/utils/utils.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -245,13 +243,7 @@ extension DateExtension on DateTime {
   }
 }
 
-/// Extension on [BuildContext]
-extension BuildContextExtensions on BuildContext {
-  /// Extension function to return [AppLocalizations] object.
-  AppLocalizations? get intl {
-    return AppLocalizations.of(this);
-  }
-}
+
 
 /// Extension on [bool]
 extension Boolean on bool {
@@ -283,21 +275,7 @@ extension Integer on int {
 }
 
 /// Extension on [Color]
-extension ColorExtension on Color {
-  Color _getDarkColor(Color color) => Color.fromRGBO(
-        225 - color.red,
-        225 - color.green,
-        225 - color.blue,
-        color.opacity,
-      );
 
-  /// Modify existing [Color] in dark mode.
-  Color withDarkMode() =>
-      DarkModeProvider().isDark ? _getDarkColor(this) : this;
-
-  /// Apply new [Color] in dark mode.
-  Color darkColor(Color color) => DarkModeProvider().isDark ? color : this;
-}
 
 const String resetColor = '\x1B[0m';
 const String redColor = '\x1B[31m';
@@ -451,7 +429,7 @@ extension WidgetExtension on Widget {
                   child: Container(
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(bgOpacity),
+                      color: Colors.black,
                       borderRadius: borderRadius,
                     ),
                     child: CustomLoader(

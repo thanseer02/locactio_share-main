@@ -3,7 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 class MapScreen extends StatelessWidget {
-  static const routname = '/MapScreen';
+  static const routeName = '/MapScreen';
 
   const MapScreen({super.key});
 
