@@ -2,9 +2,9 @@
 
 import 'dart:async';
 import 'dart:io';
-
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:base_project/common/app_colors.dart';
 import 'package:base_project/utils/extensions.dart';
-import 'package:base_project/utils/colors.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -110,6 +110,7 @@ void showToast(
   Color? textColor,
   double? fontSize,
 }) {
+
   Fluttertoast.showToast(
     msg: msg,
     toastLength: Toast.LENGTH_SHORT,
@@ -365,110 +366,4 @@ Future<void> showCustomBottomWidget(
   );
 }
 
-String getDate(
-  BuildContext context,
-  String date, {
-  bool isTimeVisible = false,
-}) {
-  if (date.isEmpty) return '';
-  final currentDateTime = DateTime.now();
 
-  final inputFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
-
-  final outputFormat = DateFormat('MM/dd/yyyy hh:mm a');
-
-  final inputDate = inputFormat.parse(date);
-
-  if (currentDateTime.year == inputDate.year &&
-      currentDateTime.month == inputDate.month) {
-    if (currentDateTime.day == inputDate.day) {
-      return LanguageProvider.appLocalizations!.today;
-    }
-
-    if (currentDateTime.day > inputDate.day) {
-      final diffrence = currentDateTime.day - inputDate.day;
-      switch (diffrence) {
-        case 1:
-          return LanguageProvider.appLocalizations!.yesterday;
-
-        default:
-          return outputFormat.format(inputDate);
-      }
-    }
-  }
-
-  return outputFormat.format(inputDate);
-}
-
-// Future<void> showCustomBottomWidget(
-//   BuildContext context, {
-//   required Widget widget,
-//   bool isPop = false,
-//   bool isTopBarEnabled = true,
-//   bool isDismissible = false,
-// }) {
-//   return showModalBottomSheet<void>(
-//     isDismissible: isDismissible,
-//     isScrollControlled: true,
-//     elevation: 0,
-//     useRootNavigator: true,
-//     enableDrag: false,
-//     backgroundColor: Colors.transparent,
-//     barrierColor: Colors.black.withOpacity(0.2),
-//     shape: RoundedRectangleBorder(
-//       borderRadius: BorderRadius.only(
-//         topLeft: Radius.circular(12.spMin),
-//         topRight: Radius.circular(12.spMin),
-//         bottomLeft:
-//             isPop ? Radius.circular(12.spMin) : Radius.circular(0.spMin),
-//         bottomRight:
-//             isPop ? Radius.circular(12.spMin) : Radius.circular(0.spMin),
-//       ),
-//     ),
-//     context: context,
-//     builder: (BuildContext context) {
-//       return DraggableScrollableSheet(
-//         initialChildSize: 0.6.spMin,
-//         minChildSize: 0.25.spMin,
-//         // minChildSize: isPop ? 0.6.spMin : 0.25.spMin,
-//         maxChildSize: 0.6.spMin,
-//         shouldCloseOnMinExtent: false,
-//         builder: (BuildContext context, ScrollController scrollController) {
-//           return Container(
-//             margin: isPop ? EdgeInsets.all(15.spMin) : EdgeInsets.zero,
-//             decoration: BoxDecoration(
-//               color: Colors.white,
-//               borderRadius: BorderRadius.only(
-//                 topLeft: Radius.circular(12.spMin),
-//                 topRight: Radius.circular(12.spMin),
-//                 bottomLeft: isPop
-//                     ? Radius.circular(12.spMin)
-//                     : Radius.circular(0.spMin),
-//                 bottomRight: isPop
-//                     ? Radius.circular(12.spMin)
-//                     : Radius.circular(0.spMin),
-//               ),
-//             ),
-//             child: Column(
-//               mainAxisSize: MainAxisSize.min,
-//               children: [
-//                 Container(
-//                   margin: EdgeInsets.all(12.spMin),
-//                   color: isTopBarEnabled ? Colors.grey : Colors.white,
-//                   height: isTopBarEnabled ? 4 : 0,
-//                   width: 63,
-//                 ),
-//                 Expanded(
-//                   child: SingleChildScrollView(
-//                     controller: scrollController,
-//                     child: widget,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           );
-//         },
-//       );
-//     },
-//   );
-// }

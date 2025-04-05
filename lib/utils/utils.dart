@@ -1,11 +1,12 @@
 import 'dart:developer' as dev;
+import 'package:base_project/common/app_colors.dart';
+import 'package:base_project/utils/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hail_driver/common/app_colors.dart';
-import 'package:hail_driver/utils/extensions.dart';
+
 
 /// [AppUtils] - Utility methods
 class AppUtils {
@@ -71,7 +72,7 @@ class AppUtils {
               child: Text(
                 cancelButtonText,
                 style: TextStyle(
-                  color: AppColors.alertBlue,
+                  color: AppColors.primaryButtonColor,
                   fontSize: 14.sp,
                 ),
               ),
@@ -86,7 +87,7 @@ class AppUtils {
               child: Text(
                 successButtonText,
                 style: TextStyle(
-                  color: AppColors.alertBlue,
+                  color: AppColors.primaryButtonColor,
                   fontSize: 14.sp,
                 ),
               ),

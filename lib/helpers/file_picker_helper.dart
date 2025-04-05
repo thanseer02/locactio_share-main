@@ -2,15 +2,16 @@
 
 import 'dart:io' as io;
 
+import 'package:base_project/common/app_colors.dart';
+import 'package:base_project/helpers/_base_helper.dart';
+import 'package:base_project/helpers/file_helper.dart';
+import 'package:base_project/utils/multi_media_picker.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hail_driver/common/app_colors.dart';
-import 'package:hail_driver/helpers/_base_helper.dart';
-import 'package:hail_driver/helpers/file_helper.dart';
-import 'package:hail_driver/utils/multi_media_picker.dart';
-import 'package:image_cropper/image_cropper.dart';
+
 import 'package:image_picker/image_picker.dart';
+import 'package:image_cropper/image_cropper.dart';
 
 class FilePickerHelper extends BaseHelper {
   static Future<List<io.File>?> pickDocuments(BuildContext context) async {
@@ -167,13 +168,7 @@ class ImageCrop {
       sourcePath: path,
       maxWidth: 1024,
       maxHeight: 1024,
-      aspectRatioPresets: [
-        CropAspectRatioPreset.square,
-        CropAspectRatioPreset.ratio3x2,
-        CropAspectRatioPreset.original,
-        CropAspectRatioPreset.ratio4x3,
-        CropAspectRatioPreset.ratio16x9,
-      ],
+  
       uiSettings: [
         AndroidUiSettings(
           toolbarTitle: 'Cropper',

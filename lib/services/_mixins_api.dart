@@ -1,13 +1,14 @@
 import 'dart:async';
 
+import 'package:base_project/features/splash_screen/view/spalsh_screen.dart';
+import 'package:base_project/helpers/sp_helper.dart';
+import 'package:base_project/services/api_exceptions.dart';
+import 'package:base_project/utils/app_build_methods.dart';
+import 'package:base_project/utils/utils.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:hail_driver/helpers/sp_helper.dart';
-import 'package:hail_driver/presentation/home/providers/bottom_provider.dart';
-import 'package:hail_driver/presentation/splash/splash_screen.dart';
-import 'package:hail_driver/services/api_exceptions.dart';
-import 'package:hail_driver/utils/app_build_methods.dart';
-import 'package:hail_driver/utils/sp_keys.dart' as sp_keys;
+
+import 'package:base_project/utils/sp_keys.dart' as sp_keys;
 import 'package:shared_preferences/shared_preferences.dart';
 
 mixin WebAPIMixin {
@@ -190,8 +191,7 @@ mixin WebAPIMixin {
       final sp = await SpHelper.getSP();
 
       await sp.clear();
-      locator.get<BottomNavigationBarProvider>().currentIndex = 0;
-      locator.get<BottomNavigationBarProvider>().changeScreen();
+      
       await Navigator.pushReplacementNamed(
         AppUtils.navKey.currentContext!,
         SplashScreen.routeName,
