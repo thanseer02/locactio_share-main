@@ -63,12 +63,13 @@ dependencies:
   location: ^8.0.0
   json_annotation: ^4.9.0
   json_serializable: ^6.9.4
-  build_runner: ^2.4.15
+
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
