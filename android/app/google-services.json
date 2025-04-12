@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "413265377017",
-    "project_id": "cybertrace-f6dd1",
-    "storage_bucket": "cybertrace-f6dd1.firebasestorage.app"
+    "project_number": "1053726604151",
+    "project_id": "odmgear-77012",
+    "storage_bucket": "odmgear-77012.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:413265377017:android:3d687648e739f6daf49428",
+        "mobilesdk_app_id": "1:1053726604151:android:7729deab2375bac1f17f72",
         "android_client_info": {
           "package_name": "com.CyberTrace.app"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBdguo1V0ovc0Tg4Iq8x2_GYQZqzJGqhvI"
+          "current_key": "AIzaSyAS2xXYKGxU09qFlPkqDghDKWnA4Y86cbk"
         }
       ],
       "services": {
