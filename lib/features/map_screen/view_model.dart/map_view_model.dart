@@ -1,12 +1,9 @@
-import 'dart:convert';
-
 import 'package:base_project/features/map_screen/model/route_model.dart';
 import 'package:base_project/utils/extensions.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:latlong2/latlong.dart';
-
 
 class MapViewModel extends ChangeNotifier {
   double _latitude = 10.9765;
@@ -55,7 +52,8 @@ class MapViewModel extends ChangeNotifier {
 
     return true;
   }
-      List<LatLng> _routePoints = [];
+
+  List<LatLng> _routePoints = [];
 
   List<LatLng> get routePoints => _routePoints;
   set routePoints(List<LatLng> value) {
@@ -63,8 +61,7 @@ class MapViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-
-  Future<void> getRouteBetweenPoints() async {
+Future<void> getRouteBetweenPoints() async {
     final Dio dio = Dio();
     final start = '$longitude,$latitude'; // Note: lng,lat
     final end = '76.2269,10.9765';
@@ -73,27 +70,34 @@ class MapViewModel extends ChangeNotifier {
       'http://router.project-osrm.org/route/v1/driving/$start;$end?overview=full&geometries=geojson',
     );
 
-
-    
-
     try {
       final response = await dio.get(url.toString());
       if (response.statusCode == 200) {
-                log('Response data: ${response.data}');
+        log('Response data: ${response.data}');
 
-        final  data = json.decode(response.data.toString());
-     final apiResponse  = RoutesModel.fromJson(data);
-        print('Response data: $data');
-        if (data['routes'].isEmpty) {
-          print('No routes found');
+        // Parse the response data into your model
+        final apiResponse = RoutesModel.fromJson(response.data);
+
+        if (apiResponse.routes.isEmpty) {
+          log('No routes found');
           return;
         }
-        final coords = data['routes'][0]['geometry']['coordinates'];
 
-        routePoints = coords.map<LatLng>((point) {
-          final double lon = point[0];
-          final double lat = point[1];
-          return LatLng(lat, lon);
+        // Get the first route (you might want to handle multiple routes differently)
+        final route = apiResponse.routes.first;
+
+        // Extract coordinates from the geometry
+        // Note: Coordinates are in [longitude, latitude] order
+        final coordinates = route.geometry.coordinates;
+
+        if (coordinates == null || coordinates.isEmpty) {
+          log('No coordinates found in route geometry');
+          return;
+        }
+
+        // Convert to LatLng objects (flutter_map uses LatLng(latitude, longitude))
+        routePoints = coordinates.map((coord) {
+          return LatLng(coord[1], coord[0]); // Note the order: lat, lng
         }).toList();
 
         notifyListeners();

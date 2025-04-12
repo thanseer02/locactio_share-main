@@ -1,3 +1,4 @@
+import 'package:base_project/common/app_colors.dart';
 import 'package:base_project/features/map_screen/view_model.dart/map_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -12,7 +13,6 @@ class MapScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Route Map")),
       floatingActionButton: GestureDetector(
         onLongPress: () async {
           final provider = context.read<MapViewModel>();
@@ -25,8 +25,11 @@ class MapScreen extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(),
-          child: const Icon(
-            Icons.route,
+          child: Icon(
+            Icons.location_searching,
+            size: 40,
+            color: AppColors.primaryColor,
+           
           ),
         ),
       ),

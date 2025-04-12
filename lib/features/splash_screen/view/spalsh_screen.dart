@@ -3,7 +3,6 @@ import 'package:base_project/features/map_screen/map_screen.dart';
 import 'package:base_project/features/map_screen/view_model.dart/map_view_model.dart';
 import 'package:base_project/helpers/location_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
@@ -66,15 +65,6 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  void _onClick() {
-    LocationHelper().checkPermissionAndNavigate(
-      context,
-      onPermission: () {
-        LocationHelper().getCurrentLocation(context: context);
-        Navigator.of(context).pushReplacementNamed(MapScreen.routeName);
-      },
-    );
-  }
 
   Future<void> checkLocation() async {
     await LocationHelper().checkPermissionAndNavigate(
@@ -85,26 +75,6 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  Future<void> _onPermission() async {
-    var permission = await Geolocator.requestPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        // Permissions are denied, next time you could try
-        // requesting permissions again (this is also where
-        // Android's shouldShowRequestPermissionRationale
-        // returned true. According to Android guidelines
-        // your App should show an explanatory UI now.
-        return Future.error('Location permissions are denied');
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      // Permissions are denied forever, handle appropriately.
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
-  }
 
   Future<bool?> requestLocationPermission() async {
     Location location = Location();
