@@ -1,4 +1,4 @@
-package  com.odmgear.app
+package com.odmgear.app
 
 import io.flutter.embedding.android.FlutterActivity
 

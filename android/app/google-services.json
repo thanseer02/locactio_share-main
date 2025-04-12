@@ -7,44 +7,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1053726604151:android:7729deab2375bac1f17f72",
-        "android_client_info": {
-          "package_name": "com.CyberTrace.app"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAS2xXYKGxU09qFlPkqDghDKWnA4Y86cbk"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1053726604151:android:b9fbfde38e9a9a7cf17f72",
-        "android_client_info": {
-          "package_name": "com.ODMGear.app"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAS2xXYKGxU09qFlPkqDghDKWnA4Y86cbk"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:1053726604151:android:1fcdce564dafc7d4f17f72",
         "android_client_info": {
           "package_name": "com.odmgear.app"
