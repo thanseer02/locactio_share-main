@@ -1,5 +1,5 @@
-import 'package:base_project/common/app_colors.dart';
-import 'package:base_project/features/map_screen/view_model.dart/map_view_model.dart';
+import 'package:CyberTrace/common/app_colors.dart';
+import 'package:CyberTrace/features/map_screen/view_model.dart/map_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';

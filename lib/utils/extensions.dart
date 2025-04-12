@@ -1,14 +1,14 @@
 import 'dart:math';
 
-import 'package:base_project/common/app_colors.dart';
-import 'package:base_project/common/app_styles.dart';
-import 'package:base_project/providers/mixin_progress_provider.dart';
-import 'package:base_project/widgets/custom_loader.dart';
-import 'package:base_project/widgets/list_scroll_more_widget.dart';
+import 'package:CyberTrace/common/app_colors.dart';
+import 'package:CyberTrace/common/app_styles.dart';
+import 'package:CyberTrace/providers/mixin_progress_provider.dart';
+import 'package:CyberTrace/widgets/custom_loader.dart';
+import 'package:CyberTrace/widgets/list_scroll_more_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:base_project/utils/utils.dart';
+import 'package:CyberTrace/utils/utils.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 

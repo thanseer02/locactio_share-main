@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:base_project/utils/extensions.dart';
+import 'package:CyberTrace/utils/extensions.dart';
 import 'package:flutter/material.dart';
 
 /// progress status controller mixin.

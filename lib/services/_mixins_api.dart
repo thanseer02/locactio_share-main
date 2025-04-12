@@ -1,14 +1,14 @@
 import 'dart:async';
 
-import 'package:base_project/features/splash_screen/view/spalsh_screen.dart';
-import 'package:base_project/helpers/sp_helper.dart';
-import 'package:base_project/services/api_exceptions.dart';
-import 'package:base_project/utils/app_build_methods.dart';
-import 'package:base_project/utils/utils.dart';
+import 'package:CyberTrace/features/splash_screen/view/spalsh_screen.dart';
+import 'package:CyberTrace/helpers/sp_helper.dart';
+import 'package:CyberTrace/services/api_exceptions.dart';
+import 'package:CyberTrace/utils/app_build_methods.dart';
+import 'package:CyberTrace/utils/utils.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import 'package:base_project/utils/sp_keys.dart' as sp_keys;
+import 'package:CyberTrace/utils/sp_keys.dart' as sp_keys;
 import 'package:shared_preferences/shared_preferences.dart';
 
 mixin WebAPIMixin {

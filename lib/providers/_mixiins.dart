@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:base_project/providers/base_provider.dart';
+import 'package:CyberTrace/providers/base_provider.dart';
 import 'package:flutter/material.dart';
 
 mixin MixinProgressProvider on BaseProvider {

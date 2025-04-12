@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'package:base_project/common/app_colors.dart';
-import 'package:base_project/common/app_styles.dart';
-import 'package:base_project/features/map_screen/view_model.dart/map_view_model.dart';
-import 'package:base_project/helpers/_base_helper.dart';
-import 'package:base_project/utils/app_build_methods.dart';
-import 'package:base_project/utils/extensions.dart';
+import 'package:CyberTrace/common/app_colors.dart';
+import 'package:CyberTrace/common/app_styles.dart';
+import 'package:CyberTrace/features/map_screen/view_model.dart/map_view_model.dart';
+import 'package:CyberTrace/helpers/_base_helper.dart';
+import 'package:CyberTrace/utils/app_build_methods.dart';
+import 'package:CyberTrace/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';

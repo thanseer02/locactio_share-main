@@ -2,8 +2,8 @@
 
 import 'dart:convert';
 
-import 'package:base_project/utils/app_build_methods.dart';
-import 'package:base_project/widgets/draggable_parent_widget.dart';
+import 'package:CyberTrace/utils/app_build_methods.dart';
+import 'package:CyberTrace/widgets/draggable_parent_widget.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

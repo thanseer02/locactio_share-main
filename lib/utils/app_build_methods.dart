@@ -3,8 +3,8 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:base_project/common/app_colors.dart';
-import 'package:base_project/utils/extensions.dart';
+import 'package:CyberTrace/common/app_colors.dart';
+import 'package:CyberTrace/utils/extensions.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

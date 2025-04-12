@@ -1,4 +1,4 @@
-import 'package:base_project/common/app_colors.dart';
+import 'package:CyberTrace/common/app_colors.dart';
 import 'package:flutter/material.dart';
 
 /// Light Theme Object

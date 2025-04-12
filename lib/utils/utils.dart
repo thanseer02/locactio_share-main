@@ -1,6 +1,6 @@
 import 'dart:developer' as dev;
-import 'package:base_project/common/app_colors.dart';
-import 'package:base_project/utils/extensions.dart';
+import 'package:CyberTrace/common/app_colors.dart';
+import 'package:CyberTrace/utils/extensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

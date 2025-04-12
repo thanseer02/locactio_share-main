@@ -1,5 +1,5 @@
-import 'package:base_project/features/map_screen/map_screen.dart';
-import 'package:base_project/features/splash_screen/view/spalsh_screen.dart';
+import 'package:CyberTrace/features/map_screen/map_screen.dart';
+import 'package:CyberTrace/features/splash_screen/view/spalsh_screen.dart';
 import 'package:flutter/material.dart';
 
 Map<String, Widget Function(BuildContext context)> appRoutes() => {

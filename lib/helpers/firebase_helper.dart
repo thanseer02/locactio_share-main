@@ -7,18 +7,18 @@
 // import 'package:flutter/foundation.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-// import 'package:base_project/common/app_colors.dart';
-// import 'package:base_project/helpers/_base_helper.dart';
-// import 'package:base_project/helpers/audio_helper.dart';
-// import 'package:base_project/helpers/sp_helper.dart';
-// import 'package:base_project/main.dart';
+// import 'package:CyberTrace/common/app_colors.dart';
+// import 'package:CyberTrace/helpers/_base_helper.dart';
+// import 'package:CyberTrace/helpers/audio_helper.dart';
+// import 'package:CyberTrace/helpers/sp_helper.dart';
+// import 'package:CyberTrace/main.dart';
 
-// import 'package:base_project/providers/refresh_on_notification_provider.dart';
-// import 'package:base_project/utils/app_build_methods.dart';
-// import 'package:base_project/utils/extensions.dart';
-// import 'package:base_project/utils/sp_keys.dart';
-// import 'package:base_project/utils/utils.dart';
-// import 'package:base_project/widgets/open_setting_warning_widget.dart';
+// import 'package:CyberTrace/providers/refresh_on_notification_provider.dart';
+// import 'package:CyberTrace/utils/app_build_methods.dart';
+// import 'package:CyberTrace/utils/extensions.dart';
+// import 'package:CyberTrace/utils/sp_keys.dart';
+// import 'package:CyberTrace/utils/utils.dart';
+// import 'package:CyberTrace/widgets/open_setting_warning_widget.dart';
 // import 'package:path_provider/path_provider.dart';
 // import 'package:permission_handler/permission_handler.dart';
 
@@ -419,9 +419,9 @@
 //     //   );
 //     // }
 //     //  _showBigPictureNotification();
-//     const channelName = 'base_project';
+//     const channelName = 'CyberTrace';
 
-//     androidChannelId ??= 'base_project';
+//     androidChannelId ??= 'CyberTrace';
 
 //     final androidPlatformChannelSpecifics = AndroidNotificationDetails(
 //       androidChannelId,
@@ -435,7 +435,7 @@
 //     );
 //     // var iOSPlatformChannelSpecifics = const IOSNotificationDetails();
 //     const iOSPlatformChannelSpecifics =
-//         DarwinNotificationDetails(threadIdentifier: 'base_project');
+//         DarwinNotificationDetails(threadIdentifier: 'CyberTrace');
 //     final platformChannelSpecifics = NotificationDetails(
 //       android: androidPlatformChannelSpecifics,
 //       iOS: iOSPlatformChannelSpecifics,
