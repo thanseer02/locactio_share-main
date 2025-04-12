@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'package:CyberTrace/common/app_colors.dart';
-import 'package:CyberTrace/common/app_styles.dart';
-import 'package:CyberTrace/features/map_screen/view_model.dart/map_view_model.dart';
-import 'package:CyberTrace/helpers/_base_helper.dart';
-import 'package:CyberTrace/utils/app_build_methods.dart';
-import 'package:CyberTrace/utils/extensions.dart';
+import 'package:ODMGear/common/app_colors.dart';
+import 'package:ODMGear/common/app_styles.dart';
+import 'package:ODMGear/features/map_screen/view_model.dart/map_view_model.dart';
+import 'package:ODMGear/helpers/_base_helper.dart';
+import 'package:ODMGear/utils/app_build_methods.dart';
+import 'package:ODMGear/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';

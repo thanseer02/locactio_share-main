@@ -1,5 +1,5 @@
 
-import 'package:CyberTrace/providers/base_provider.dart';
+import 'package:ODMGear/providers/base_provider.dart';
 
 class ToggleViewModel extends BaseProvider {
   bool _isToggleTap = false;

@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAS2xXYKGxU09qFlPkqDghDKWnA4Y86cbk',
-    appId: '1:1053726604151:android:7729deab2375bac1f17f72',
+    appId: '1:1053726604151:android:1fcdce564dafc7d4f17f72',
     messagingSenderId: '1053726604151',
     projectId: 'odmgear-77012',
     storageBucket: 'odmgear-77012.firebasestorage.app',
@@ -59,10 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAtP5YkpkPJFyruZrQl_UNC9-jQB7UMhIs',
-    appId: '1:1053726604151:ios:b8f5a318465151e8f17f72',
+    appId: '1:1053726604151:ios:5c4e87f84ea451f9f17f72',
     messagingSenderId: '1053726604151',
     projectId: 'odmgear-77012',
     storageBucket: 'odmgear-77012.firebasestorage.app',
-    iosBundleId: 'com.example.baseProject',
+    iosBundleId: 'com.odmgear.app',
   );
+
 }

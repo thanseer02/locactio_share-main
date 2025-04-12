@@ -1,12 +1,12 @@
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter, 
 
 import 'dart:io';
-import 'package:CyberTrace/configs/app_configs.dart';
-import 'package:CyberTrace/services/_mixins_api.dart';
-import 'package:CyberTrace/services/api_exceptions.dart';
-import 'package:CyberTrace/services/interceptors.dart';
-import 'package:CyberTrace/utils/extensions.dart';
-import 'package:CyberTrace/utils/urls.dart';
+import 'package:ODMGear/configs/app_configs.dart';
+import 'package:ODMGear/services/_mixins_api.dart';
+import 'package:ODMGear/services/api_exceptions.dart';
+import 'package:ODMGear/services/interceptors.dart';
+import 'package:ODMGear/utils/extensions.dart';
+import 'package:ODMGear/utils/urls.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';

@@ -1,7 +1,7 @@
-import 'package:CyberTrace/common/app_styles.dart';
-import 'package:CyberTrace/features/map_screen/map_screen.dart';
-import 'package:CyberTrace/features/map_screen/view_model.dart/map_view_model.dart';
-import 'package:CyberTrace/helpers/location_helper.dart';
+import 'package:ODMGear/common/app_styles.dart';
+import 'package:ODMGear/features/map_screen/map_screen.dart';
+import 'package:ODMGear/features/map_screen/view_model.dart/map_view_model.dart';
+import 'package:ODMGear/helpers/location_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';

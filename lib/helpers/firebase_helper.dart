@@ -6,13 +6,13 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:CyberTrace/common/app_colors.dart';
-import 'package:CyberTrace/helpers/_base_helper.dart';
-import 'package:CyberTrace/helpers/sp_helper.dart';
+import 'package:ODMGear/common/app_colors.dart';
+import 'package:ODMGear/helpers/_base_helper.dart';
+import 'package:ODMGear/helpers/sp_helper.dart';
 
-import 'package:CyberTrace/utils/app_build_methods.dart';
-import 'package:CyberTrace/utils/sp_keys.dart';
-import 'package:CyberTrace/utils/utils.dart';
+import 'package:ODMGear/utils/app_build_methods.dart';
+import 'package:ODMGear/utils/sp_keys.dart';
+import 'package:ODMGear/utils/utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -299,9 +299,9 @@ class FirebaseMessagingHelper extends BaseHelper {
       );
     }
 
-    const channelName = 'CyberTrace';
+    const channelName = 'ODMGear';
 
-    androidChannelId ??= 'CyberTrace';
+    androidChannelId ??= 'ODMGear';
 
     final androidPlatformChannelSpecifics = AndroidNotificationDetails(
       androidChannelId,
@@ -315,7 +315,7 @@ class FirebaseMessagingHelper extends BaseHelper {
     );
     // var iOSPlatformChannelSpecifics = const IOSNotificationDetails();
     const iOSPlatformChannelSpecifics =
-        DarwinNotificationDetails(threadIdentifier: 'CyberTrace');
+        DarwinNotificationDetails(threadIdentifier: 'ODMGear');
     final platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
       iOS: iOSPlatformChannelSpecifics,

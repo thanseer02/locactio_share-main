@@ -1,5 +1,5 @@
-import 'package:CyberTrace/features/map_screen/model/route_model.dart';
-import 'package:CyberTrace/utils/extensions.dart';
+import 'package:ODMGear/features/map_screen/model/route_model.dart';
+import 'package:ODMGear/utils/extensions.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';

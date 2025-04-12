@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:CyberTrace/providers/mixin_progress_provider.dart';
-import 'package:CyberTrace/utils/extensions.dart';
+import 'package:ODMGear/providers/mixin_progress_provider.dart';
+import 'package:ODMGear/utils/extensions.dart';
 import 'package:flutter/material.dart';
 
 

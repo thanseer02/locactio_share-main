@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 import 'dart:ui';
-import 'package:CyberTrace/common/app_colors.dart';
-import 'package:CyberTrace/utils/extensions.dart';
+import 'package:ODMGear/common/app_colors.dart';
+import 'package:ODMGear/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

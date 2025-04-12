@@ -1,12 +1,12 @@
-import 'package:CyberTrace/features/map_screen/view_model.dart/map_view_model.dart';
-import 'package:CyberTrace/common/app_theme.dart';
-import 'package:CyberTrace/features/splash_screen/view/spalsh_screen.dart';
-import 'package:CyberTrace/firebase_options.dart';
-import 'package:CyberTrace/helpers/firebase_helper.dart';
-import 'package:CyberTrace/services/interceptors.dart';
-import 'package:CyberTrace/utils/extensions.dart';
-import 'package:CyberTrace/utils/routes.dart';
-import 'package:CyberTrace/utils/utils.dart';
+import 'package:ODMGear/features/map_screen/view_model.dart/map_view_model.dart';
+import 'package:ODMGear/common/app_theme.dart';
+import 'package:ODMGear/features/splash_screen/view/spalsh_screen.dart';
+import 'package:ODMGear/firebase_options.dart';
+import 'package:ODMGear/helpers/firebase_helper.dart';
+import 'package:ODMGear/services/interceptors.dart';
+import 'package:ODMGear/utils/extensions.dart';
+import 'package:ODMGear/utils/routes.dart';
+import 'package:ODMGear/utils/utils.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'CyberTrace',
+            title: 'ODMGear',
             navigatorKey: AppUtils.navKey,
             theme: lightTheme,
             initialRoute: SplashScreen.routeName,
