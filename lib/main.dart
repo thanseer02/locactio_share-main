@@ -1,17 +1,45 @@
-import 'package:base_project/common/app_theme.dart';
-import 'package:base_project/features/map_screen/view_model.dart/map_view_model.dart';
-import 'package:base_project/features/splash_screen/view/spalsh_screen.dart';
-import 'package:base_project/services/interceptors.dart';
-import 'package:base_project/utils/extensions.dart';
-import 'package:base_project/utils/routes.dart';
-import 'package:base_project/utils/utils.dart';
+import 'package:CyberTrace/features/map_screen/view_model.dart/map_view_model.dart';
+import 'package:CyberTrace/common/app_theme.dart';
+import 'package:CyberTrace/features/splash_screen/view/spalsh_screen.dart';
+import 'package:CyberTrace/firebase_options.dart';
+import 'package:CyberTrace/helpers/firebase_helper.dart';
+import 'package:CyberTrace/services/interceptors.dart';
+import 'package:CyberTrace/utils/extensions.dart';
+import 'package:CyberTrace/utils/routes.dart';
+import 'package:CyberTrace/utils/utils.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  initFirebase();
   runApp(const MyApp());
+}
+
+Future<void> initFirebase() async {
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    FirebaseMessaging.onBackgroundMessage(
+      FirebaseMessagingHelper.firebaseMessagingBackgroundHandler,
+    );
+    await _setUpFireBase();
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+}
+
+Future<void> _setUpFireBase() async {
+  try {
+    await FirebaseMessagingHelper().setUpFirebase();
+  } catch (ex) {
+    debugPrint(ex.toString());
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -30,7 +58,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Location Share',
+            title: 'CyberTrace',
             navigatorKey: AppUtils.navKey,
             theme: lightTheme,
             initialRoute: SplashScreen.routeName,
