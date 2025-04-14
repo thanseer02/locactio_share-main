@@ -1,4 +1,5 @@
 import 'package:ODMGear/common/app_styles.dart';
+import 'package:ODMGear/features/login_screen/view/login_screen.dart';
 import 'package:ODMGear/features/map_screen/map_screen.dart';
 import 'package:ODMGear/features/map_screen/view_model.dart/map_view_model.dart';
 import 'package:ODMGear/helpers/location_helper.dart';
@@ -18,9 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    LocationHelper().getCurrentLocation(context: context);
     Future.delayed(const Duration(seconds: 1), () {
-      LocationHelper().getCurrentLocation(context: context);
+      Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
     });
   }
 

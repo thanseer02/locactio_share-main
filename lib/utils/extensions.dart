@@ -135,7 +135,7 @@ extension StringExtensions on String {
   String asAssetIconSvg() => 'assets/icons/$this.svg';
 
   /// Extension function to get the svg asset location
-  String asAssetSvg() => 'assets/svgs/$this.svg';
+  String asAssetSvg() => 'assets/svg/$this.svg';
 
   String asAssetMp3() => 'audio/$this.mp3';
 

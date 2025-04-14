@@ -149,7 +149,7 @@ class FirebaseMessagingHelper extends BaseHelper {
   /// This method intiate the redirection from the notification.
   Future<void> _firebaseCloudMessagingListeners() async {
     FirebaseMessaging.instance.onTokenRefresh.listen(_onTokenRefresh);
-    unawaited(subscribeToTopic('general-notification-driver'));
+    // unawaited(subscribeToTopic('general-notification-driver'));
     if ((await SpHelper.getString(keyDeviceToken)).toString().isEmpty) {
       await FirebaseMessaging.instance.getToken().then((token) {
         if (token != null) _onTokenRefresh(token);
