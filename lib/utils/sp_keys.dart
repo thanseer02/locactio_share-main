@@ -5,6 +5,7 @@ const keyToken = 'KEY_TOKEN';
 const keyDarkMode = 'DARK_MODE';
 const keyBaseURL = 'BASE_URL';
 const keyUserName = 'USER_NAME';
+const keyUserImage = 'USER_NAME';
 const keyUserMobile = 'USER_MOBILE';
 const keyUserId = 'USER_ID';
 const keyUserStatus = 'USER_STATUS';

@@ -1,3 +1,5 @@
+import 'package:ODMGear/features/login_screen/home_provider.dart';
+import 'package:ODMGear/features/login_screen/view_model/login_provider.dart';
 import 'package:ODMGear/features/map_screen/view_model.dart/map_view_model.dart';
 import 'package:ODMGear/common/app_theme.dart';
 import 'package:ODMGear/features/splash_screen/view/spalsh_screen.dart';
@@ -51,6 +53,12 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => MapViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => LoginViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => HomeProvider(),
         ),
       ],
       child: ScreenUtilInit(

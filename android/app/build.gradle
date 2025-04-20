@@ -7,7 +7,11 @@ plugins {
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
 }
-
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
 android {
     namespace = "com.odmgear.app"
     compileSdk = flutter.compileSdkVersion
@@ -34,10 +38,10 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file("odm_keystore.jks")
-            storePassword "odmGear"
-            keyAlias "upload"
-            keyPassword "odmGaar"
+            storeFile file(keystoreProperties['storeFile'] ?: "odm_keystore.jks")
+            storePassword keystoreProperties['storePassword'] ?: ""
+            keyAlias keystoreProperties['keyAlias'] ?: ""
+            keyPassword keystoreProperties['keyPassword'] ?: ""
         }
     }
 
@@ -46,10 +50,13 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.release
+            shrinkResources false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-}
 
+}
 flutter {
     source = "../.."
 }

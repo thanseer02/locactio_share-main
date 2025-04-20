@@ -1,11 +1,9 @@
 import 'package:ODMGear/common/app_styles.dart';
+import 'package:ODMGear/features/home/view/home_screen.dart';
 import 'package:ODMGear/features/login_screen/view/login_screen.dart';
-import 'package:ODMGear/features/map_screen/map_screen.dart';
-import 'package:ODMGear/features/map_screen/view_model.dart/map_view_model.dart';
-import 'package:ODMGear/helpers/location_helper.dart';
+import 'package:ODMGear/helpers/sp_helper.dart';
+import 'package:ODMGear/utils/sp_keys.dart';
 import 'package:flutter/material.dart';
-import 'package:location/location.dart';
-import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splashscreen';
@@ -19,8 +17,19 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 1), () {
-      Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+    Future.delayed(const Duration(seconds: 3), () {
+      SpHelper.getString(keyToken).then((value) {
+        if (value != null) {
+          Navigator.of(context).pushReplacementNamed(
+            HomeScreen.routeName,
+          );
+        } else {
+          Navigator.of(context).pushReplacementNamed(
+            LoginScreen.routeName,
+          );
+        }
+      });
+      
     });
   }
 
@@ -33,80 +42,28 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Center(
             child: Text(
-              'Welcome to Location Share',
+              'Welcome ODMgear',
               style: tsS20W600.copyWith(
                 color: Colors.black,
               ),
             ),
           ),
           SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () async {
-              Navigator.of(context).pushReplacementNamed(MapScreen.routeName);
-            },
-            // onPressed: () => _onClick(),
-            child: const Text('Go to Map'),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              requestLocationPermission().then((v) {
-                if (v == true) {
-                  Navigator.of(context)
-                      .pushReplacementNamed(MapScreen.routeName);
-                }
-              }); // requestLocationPermission();
-              // LocationHelper().getCurrentLocation(context: context);
-            },
-            // onPressed: () => _onClick(),
-            child: const Text('Get Location'),
-          ),
+   
+          Center(
+            child: Text(
+              'Please wait while we load the app',
+              style: tsS16W500.copyWith(
+                color: Colors.black,
+              ),
+            ),
+          ),  
         ],
       ),
     );
   }
 
 
-  Future<void> checkLocation() async {
-    await LocationHelper().checkPermissionAndNavigate(
-      context,
-      onPermission: () {
-        LocationHelper().getCurrentLocation(context: context);
-      },
-    );
-  }
 
-
-  Future<bool?> requestLocationPermission() async {
-    Location location = Location();
-
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
-    LocationData _locationData;
-
-    _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
-        return false;
-      }
-    }
-
-    _permissionGranted = await location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
-        return true;
-      }
-    }
-
-    _locationData = await location.getLocation();
-    print('Location: ${_locationData.latitude}, ${_locationData.longitude}');
-    final provider = context.read<MapViewModel>();
-    provider
-      ..latitude = _locationData.latitude ?? 0.0
-      ..longitude = _locationData.longitude ?? 0.0;
-
-    return true;
-  }
 
 }

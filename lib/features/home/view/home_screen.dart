@@ -1,6 +1,14 @@
+import 'package:ODMGear/common/app_styles.dart';
+import 'package:ODMGear/features/login_screen/home_provider.dart';
 import 'package:ODMGear/features/map_screen/map_screen.dart';
+import 'package:ODMGear/helpers/sp_helper.dart';
+import 'package:ODMGear/utils/sp_keys.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
+
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -22,6 +30,16 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
+@override
+  void initState() {
+    super.initState();
+    setImage();
+  }
+
+  Future<void> setImage() async {
+    context.read<HomeProvider>().profileImge =
+        await SpHelper.getString(keyUserImage) ?? '';
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,33 +54,28 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Center(
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: EdgeInsets.all(24.spMin),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(
-                    Icons.video_camera_front_rounded,
-                    size: 80,
-                    color: Colors.white,
+                
+                  SizedBox(height: 16.spMin),
+                  Text(
+                    'MAP Connect',
+                    style: ts34CBlack.copyWith(
+                      color: Colors.white,
+                    ),  
                   ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'Video Connect',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
+                  SizedBox(height: 8.spMin),
+                  Text(
+                    'Connect with anyone, anywhere',
+                    style: tsS16W400.copyWith(
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Connect with anyone, anywhere',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white70,
-                    ),
+                  SizedBox(
+                    height: 40.spMin,
                   ),
-                  const SizedBox(height: 40),
                   _buildRoomCard(context),
                 ],
               ),
@@ -77,17 +90,19 @@ class _HomeScreenState extends State<HomeScreen> {
     return Card(
       elevation: 8,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(
+          16.spMin,
+        ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: EdgeInsets.all(24.spMin),
         child: Column(
           children: [
             TextField(
               controller: _roomIdController,
               decoration: InputDecoration(
                 labelText: 'Room Code',
-                prefixIcon: const Icon(Icons.meeting_room),
+                prefixIcon: Icon(Icons.meeting_room),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -95,14 +110,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 fillColor: Colors.grey[50],
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(
+              height: 24.spMin,
+            ),
             _buildJoinButton(context),
-            const SizedBox(height: 16),
-            const Text(
+            SizedBox(
+              height: 16.spMin,
+            ),
+            Text(
               'or',
               style: TextStyle(color: Colors.grey),
             ),
-            const SizedBox(height: 16),
+            SizedBox(
+              height: 16.spMin,
+            ),
             _buildCreateButton(context),
           ],
         ),
@@ -116,15 +137,15 @@ class _HomeScreenState extends State<HomeScreen> {
       height: 50,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF6C63FF),
+          backgroundColor: Color(0xFF6C63FF),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
         ),
         onPressed: _isJoining ? null : () => _joinRoom(context),
         child: _isJoining
-            ? const CircularProgressIndicator(color: Colors.white)
-            : const Text(
+            ? CircularProgressIndicator(color: Colors.white)
+            : Text(
                 'Join Room',
                 style: TextStyle(fontSize: 16),
               ),
@@ -138,15 +159,15 @@ class _HomeScreenState extends State<HomeScreen> {
       height: 50,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
-          side: const BorderSide(color: Color(0xFF6C63FF)),
+          side: BorderSide(color: Color(0xFF6C63FF)),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
         ),
         onPressed: _isCreating ? null : () => _createRoom(context),
         child: _isCreating
-            ? const CircularProgressIndicator(color: Color(0xFF6C63FF))
-            : const Text(
+            ? CircularProgressIndicator(color: Color(0xFF6C63FF))
+            : Text(
                 'Create New Room',
                 style: TextStyle(
                   fontSize: 16,
@@ -166,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     setState(() => _isJoining = true);
     try {
-      await Future.delayed(const Duration(seconds: 1)); // Simulate API call
+      await Future.delayed(Duration(seconds: 1)); // Simulate API call
     } catch (e) {
       _showSnackBar(context, 'Error: ${e.toString()}');
       setState(() => _isJoining = false);
@@ -186,19 +207,37 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _createRoom(BuildContext context) async {
     setState(() => _isCreating = true);
-    await Future.delayed(const Duration(seconds: 1)); // Simulate room creation
+    await Future.delayed(Duration(seconds: 1)); // Simulate room creation
     final roomId = _generateRoomId();
     _roomIdController.text = roomId;
     setState(() => _isCreating = false);
 
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    CollectionReference usersCollection = await _firestore.collection('rooms');
+    try {
+      await usersCollection.add({
+        'roomId': roomId,
+        'createdAt': FieldValue.serverTimestamp(),
+        'useName': await SpHelper.getString(keyUserName),
+        'userId': await SpHelper.getString(keyUserId),
+      }).then((value) {
+        _showSnackBar(context, 'Room created successfully!');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MapScreen(roomId: roomId),
+          ),
+        );
+      });
+    } catch (e) {
+      _showSnackBar(context, 'Error creating room: $e');
+      return;
+    }
+
     if (!mounted) return;
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => MapScreen(roomId: roomId),
-      ),
-    );
+
+  
   }
 
   String _generateRoomId() {

@@ -1,5 +1,8 @@
 import 'package:ODMGear/features/map_screen/model/route_model.dart';
+import 'package:ODMGear/helpers/sp_helper.dart';
 import 'package:ODMGear/utils/extensions.dart';
+import 'package:ODMGear/utils/sp_keys.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
@@ -27,7 +30,6 @@ class MapViewModel extends ChangeNotifier {
 
     bool _serviceEnabled;
     PermissionStatus _permissionGranted;
-    LocationData _locationData;
 
     _serviceEnabled = await location.serviceEnabled();
     if (!_serviceEnabled) {
@@ -45,12 +47,23 @@ class MapViewModel extends ChangeNotifier {
       }
     }
 
-    _locationData = await location.getLocation();
-    print('Location: ${_locationData.latitude}, ${_locationData.longitude}');
+    return true;
+  }
+
+  getCurrentLocation(String roomId) async {
+    Location location = Location();
+    final _locationData = await location.getLocation();
+    log('Location: ${_locationData.latitude}, ${_locationData.longitude}');
     latitude = _locationData.latitude ?? 0.0;
     longitude = _locationData.longitude ?? 0.0;
+    setCurrentLocation(roomId);
 
-    return true;
+    // location.onLocationChanged.listen((LocationData currentLocation) {
+    //   latitude = currentLocation.latitude ?? 0.0;
+    //   longitude = currentLocation.longitude ?? 0.0;
+    //   setCurrentLocation(roomId);
+    //   print('Current Location: $latitude, $longitude');
+    // });
   }
 
   List<LatLng> _routePoints = [];
@@ -61,7 +74,29 @@ class MapViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-Future<void> getRouteBetweenPoints() async {
+  setCurrentLocation(String roomId) async {
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    final CollectionReference _locationCollection =
+        _firestore.collection('locations$roomId');
+    _locationCollection.add(
+      {
+        'id': DateTime.now().millisecondsSinceEpoch.toString(),
+        'latitude': latitude,
+        'longitude': longitude,
+        'timestamp': FieldValue.serverTimestamp(),
+        'userId': await SpHelper.getString(keyUserId),
+        'userName': await SpHelper.getString(keyUserName),
+        'roomId': roomId,
+        'createdAt': FieldValue.serverTimestamp(),
+      },
+    ).then((value) {
+      print('Location saved successfully!');
+    }).catchError((error) {
+      print('Error saving location: $error');
+    });
+  }
+
+  Future<void> getRouteBetweenPoints() async {
     final Dio dio = Dio();
     final start = '$longitude,$latitude'; // Note: lng,lat
     final end = '76.2269,10.9765';

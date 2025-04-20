@@ -1,12 +1,14 @@
 import 'dart:math';
 
+import 'package:ODMGear/features/login_screen/home_provider.dart';
 import 'package:ODMGear/features/map_screen/view_model.dart/map_view_model.dart';
+import 'package:ODMGear/utils/app_build_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart'; // For Clipboard
-// import 'package:share_plus/share_plus.dart';
 
 class MapScreen extends StatelessWidget {
   final String roomId;
@@ -49,7 +51,10 @@ class MapScreen extends StatelessWidget {
             heroTag: 'location_permission',
             onPressed: () async {
               final provider = context.read<MapViewModel>();
-              await provider.requestLocationPermission();
+              if (await provider.requestLocationPermission() == true) {
+                provider.getCurrentLocation(roomId);
+              }
+              
             },
             backgroundColor: Colors.teal, // Changed color
             child: const Icon(Icons.my_location, color: Colors.white),
@@ -94,26 +99,23 @@ class MapScreen extends StatelessWidget {
                 markers: [
                   Marker(
                     point: LatLng(value.latitude, value.longitude),
-                    width: 35,
-                    height: 35,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: NetworkImage(
-                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0GmbqLv8DJIvKhqNF6Pq4DWuDxXMro0W02HHC3H7AJY7muJJmQUYB-SY6dyV926DBjWiJ_GKq7sh4XHtBuHHBYYMBEleDapdtwFpYs9U'), // Assuming userImageUrl is provided in MapViewModel
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
+                      width: 35.spMin,
+                      height: 35.spMin,
+                      child: ClipRRect(
+                        clipBehavior: Clip.hardEdge,
+                        borderRadius: BorderRadius.circular(50.spMin),
+                        child: buildCachedNetworkImage(
+                            context.read<HomeProvider>().profileImge),
+                      )
+                  
                   ),
                   Marker(
                     point: const LatLng(10.9765, 76.2269),
-                    width: 80,
-                    height: 80,
+                    width: 80.spMin,
+                    height: 80.spMin,
                     child: const Icon(
                       Icons.flag,
-                      color: Colors.orange, // Changed color
+                      color: Colors.green, // Changed color
                       size: 40,
                     ),
                   ),

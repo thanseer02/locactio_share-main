@@ -12,7 +12,28 @@
           "package_name": "com.odmgear.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1053726604151-0ulb7u4tnhh6qejbiqnp078ummfo4l1p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.odmgear.app",
+            "certificate_hash": "efc5e49b58ea9812c5d32018d328da6ce941080c"
+          }
+        },
+        {
+          "client_id": "1053726604151-jms2blvokrj2ci34o00kif31lqhb5b88.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.odmgear.app",
+            "certificate_hash": "e51c4d659944dcc86ba2ed0cb666936d77fa8c4e"
+          }
+        },
+        {
+          "client_id": "1053726604151-icfq9hdasadgo43jkhkihgtce3t5o3o7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAS2xXYKGxU09qFlPkqDghDKWnA4Y86cbk"
@@ -20,7 +41,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1053726604151-icfq9hdasadgo43jkhkihgtce3t5o3o7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1053726604151-fk617nul1ijdomm87qpc3hrj1b7en46v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.odmgear.app"
+              }
+            }
+          ]
         }
       }
     }

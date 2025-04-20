@@ -1,12 +1,10 @@
 import 'package:ODMGear/features/home/view/home_screen.dart';
 import 'package:ODMGear/features/login_screen/view/login_screen.dart';
-import 'package:ODMGear/features/map_screen/map_screen.dart';
 import 'package:ODMGear/features/splash_screen/view/spalsh_screen.dart';
 import 'package:flutter/material.dart';
 
 Map<String, Widget Function(BuildContext context)> appRoutes() => {
       SplashScreen.routeName: (context) => const SplashScreen(),
-      // MapScreen.routeName: (context) => const MapScreen(),
       LoginScreen.routeName: (context) => LoginScreen(),
       HomeScreen.routeName: (context) => HomeScreen(),
 };
